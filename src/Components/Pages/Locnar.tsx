@@ -8,47 +8,34 @@ import Popup from "./MapComponents/Popup";
 // in popup, if they then choose the correct item, mark that item as done, keep state true. 
 // If they do not click the correct item, clear coordinate state, close choosebox.
 // Should put this login in App. since it can be passed down into each map.
-//https://stackoverflow.com/questions/32870568/how-to-recalculate-x-y-coordinates-based-on-screensize
-//https://stackoverflow.com/questions/35286099/position-x-y-coordinates-update-on-page-resize
+// Have a state that stores the click status of each item. If one of them was clicked, remove them from the popup.
+
 
 const Locnar:FC = () => {
     const [coords, setCoords] = useState({x: 0, y: 0});
     const [babaCoords, setBabaCoords] = useState({x: 0, y: 0});
+    const [ryukCoords, setRyukCoords] = useState({x: 0, y: 0});
+    const [patrickCoords, setPatrickCoords] = useState({x: 0, y: 0});
     const [clickDetect, setClickDetect] = useState(false);
 
     // On mouseclick, update Coords with the clicked
     useEffect(() => {
-        const handleMouseMove = (e: any) => {
+        const handleMouseClick = (e: any) => {
             setCoords({
                 x: e.clientX,
                 y: e.pageY - 68, // 68 is the offset in piexels from the header
             })
+            setClickDetect(true);
+            if (clickDetect){
+                setClickDetect(false);
+            }
         };
         const playImg = document.querySelector('#playImg');
-        playImg?.addEventListener('mousedown', handleMouseMove);
+        playImg?.addEventListener('mousedown', handleMouseClick);
         return () => {
-            playImg?.removeEventListener('mousedown', handleMouseMove);
+            playImg?.removeEventListener('mousedown', handleMouseClick);
         }
-    }, [])
-    
-    // whenever coords updates (a click was detected), check if item was clicked
-    useEffect(() => {
-        const checkClick = (clickX: number, clickY: number, itemX: number, itemY: number, xleniency: number, yleniency: number) => {
-            if (itemX > (clickX - clickX*xleniency) && itemX < (clickX + clickX*xleniency) && itemY > (clickY - clickY*yleniency) && itemY < (clickY + clickY*yleniency)){
-                return true;
-            } 
-            return false;
-        };
-
-        if (checkClick(coords.x, coords.y, babaCoords.x, babaCoords.y, 0.03, 0.10)) {
-            console.log('clicked Baba');
-        }
-        console.log(coords);
     })
-
-    useEffect(() => {
-        setClickDetect(true);
-    }, [coords])
 
     // to detect window size and update coordinates of items.
     useEffect(() =>{
@@ -64,6 +51,14 @@ const Locnar:FC = () => {
                 x: updateXCoords(1030),
                 y: updateYCoords(481)
             })
+            setRyukCoords({
+                x: updateXCoords(345),
+                y: updateYCoords(3868)
+            })
+            setPatrickCoords({
+                x: updateXCoords(1314),
+                y: updateYCoords(6487)
+            })
         }, 1000);
 
         window.addEventListener('resize', deHandleResize);
@@ -72,12 +67,42 @@ const Locnar:FC = () => {
         }
     })
 
-    useEffect(() => {
-        console.log(babaCoords);
-    }, [babaCoords])
+    // checks if the item was clicked
+    const updateClickDetect = ( itemName: string ) =>{
+        const checkClick = (clickX: number, clickY: number, itemX: number, itemY: number, xleniency: number, yleniency: number) => {
+            if (itemX > (clickX - clickX*xleniency) && itemX < (clickX + clickX*xleniency) && itemY > (clickY - clickY*yleniency) && itemY < (clickY + clickY*yleniency)){
+                return true;
+            } 
+            return false;
+        };
 
-    const updateClickDetect = () =>{
-        setClickDetect(!clickDetect);
+        switch (itemName){
+            case 'yababa':
+                if (checkClick(coords.x, coords.y, babaCoords.x, babaCoords.y, 0.03, 0.10)) {
+                    console.log('clicked Yababa');
+                } else{
+                    console.log('try again');
+                }
+                break;
+            case 'ryuk':
+                if (checkClick(coords.x, coords.y, ryukCoords.x, ryukCoords.y, 0.10, 0.017)) {
+                    console.log('clicked Ryuk');
+                } else{
+                    console.log('try again');
+                }
+                break;
+            case 'patrick':
+                if (checkClick(coords.x, coords.y, patrickCoords.x, patrickCoords.y, 0.017, 0.0055)) {
+                    console.log('clicked Patrick');
+                } else{
+                    console.log('try again');
+                }
+                break;
+            default:
+                console.log('default');
+        }
+        console.log(coords);
+        setClickDetect(false);
     }
 
     return (
@@ -85,8 +110,6 @@ const Locnar:FC = () => {
             <img id="playImg" src={require('../../Assets/the-loc-nar.jpg')} alt="playarea"></img>
             <Popup coords={coords} clickDetect={clickDetect} updateClickDetect={updateClickDetect}/>
         </>
-        
-        
     )
 }
 

@@ -17,13 +17,13 @@ const Popup:FC<Props> = ({ coords, clickDetect, updateClickDetect }) => {
                 display: `${clickDetect ? "flex" : "none"}`
             }}
         >
-            <div onClick={updateClickDetect}>
+            <div className="itemTxt" onClick={updateClickDetect}>
                 Yababa
             </div>
-            <div onClick={updateClickDetect}>
+            <div className="itemTxt" onClick={updateClickDetect}>
                 Item 2
             </div>
-            <div onClick={updateClickDetect}>
+            <div className="itemTxt" onClick={updateClickDetect}>
                 Item 3
             </div>
         </div>

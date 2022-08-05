@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useEffect, useState } from "react";
-import debounce from "../Utilities/debounce"
+import debounce from "../Utilities/debounce";
+import Popup from "./MapComponents/Popup";
 
 // on click, setstate coordinates. -> popup choosebox.
 // if item was clicked, change state of item to true. 
@@ -11,8 +12,9 @@ import debounce from "../Utilities/debounce"
 //https://stackoverflow.com/questions/35286099/position-x-y-coordinates-update-on-page-resize
 
 const Locnar:FC = () => {
-    const [coords, setCoords] = useState({x: 0, y:0});
-    const [babaCoords, setBabaCoords] = useState({x: 0, y: 0})
+    const [coords, setCoords] = useState({x: 0, y: 0});
+    const [babaCoords, setBabaCoords] = useState({x: 0, y: 0});
+    const [clickDetect, setClickDetect] = useState(false);
 
     // On mouseclick, update Coords with the clicked
     useEffect(() => {
@@ -42,6 +44,10 @@ const Locnar:FC = () => {
             console.log('clicked Baba');
         }
         console.log(coords);
+    })
+
+    useEffect(() => {
+        setClickDetect(true);
     }, [coords])
 
     // to detect window size and update coordinates of items.
@@ -70,8 +76,17 @@ const Locnar:FC = () => {
         console.log(babaCoords);
     }, [babaCoords])
 
+    const updateClickDetect = () =>{
+        setClickDetect(!clickDetect);
+    }
+
     return (
-        <img id="playImg" src={require('../../Assets/the-loc-nar.jpg')} alt="playarea"></img>
+        <>
+            <img id="playImg" src={require('../../Assets/the-loc-nar.jpg')} alt="playarea"></img>
+            <Popup coords={coords} clickDetect={clickDetect} updateClickDetect={updateClickDetect}/>
+        </>
+        
+        
     )
 }
 

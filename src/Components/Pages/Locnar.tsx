@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useEffect, useState } from "react";
-import debounce from "../Utilities/useDebounce"
+import debounce from "../Utilities/debounce"
 
 // on click, setstate coordinates. -> popup choosebox.
 // if item was clicked, change state of item to true. 
@@ -12,8 +12,9 @@ import debounce from "../Utilities/useDebounce"
 
 const Locnar:FC = () => {
     const [coords, setCoords] = useState({x: 0, y:0});
-    const [babaCoords, setBabaCoords] = useState({x: 1030, y: 481})
+    const [babaCoords, setBabaCoords] = useState({x: 0, y: 0})
 
+    // On mouseclick, update Coords with the clicked
     useEffect(() => {
         const handleMouseMove = (e: any) => {
             setCoords({
@@ -28,16 +29,35 @@ const Locnar:FC = () => {
         }
     }, [])
     
+    // whenever coords updates (a click was detected), check if item was clicked
     useEffect(() => {
+        const checkClick = (clickX: number, clickY: number, itemX: number, itemY: number, xleniency: number, yleniency: number) => {
+            if (itemX > (clickX - clickX*xleniency) && itemX < (clickX + clickX*xleniency) && itemY > (clickY - clickY*yleniency) && itemY < (clickY + clickY*yleniency)){
+                return true;
+            } 
+            return false;
+        };
+
+        if (checkClick(coords.x, coords.y, babaCoords.x, babaCoords.y, 0.03, 0.10)) {
+            console.log('clicked Baba');
+        }
         console.log(coords);
-        // eslint-disable-next-line no-restricted-globals
-        console.log(`test: ${window.innerWidth}`);
-    }, [coords] )
+    }, [coords])
 
     // to detect window size and update coordinates of items.
     useEffect(() =>{
         const deHandleResize = debounce(function handleResize(){
-            console.log("resized");
+            const updateXCoords = (xCords: number) => {
+                return (Math.round((xCords * (window.innerWidth / 2000))*100)/100)
+            };
+            const updateYCoords = (yCords: number) => {
+                return (Math.round((yCords * ((window.innerWidth/0.237) / 8433))*100)/100)
+            }
+
+            setBabaCoords({
+                x: updateXCoords(1030),
+                y: updateYCoords(481)
+            })
         }, 1000);
 
         window.addEventListener('resize', deHandleResize);
@@ -45,6 +65,10 @@ const Locnar:FC = () => {
             window.removeEventListener('resize', deHandleResize);
         }
     })
+
+    useEffect(() => {
+        console.log(babaCoords);
+    }, [babaCoords])
 
     return (
         <img id="playImg" src={require('../../Assets/the-loc-nar.jpg')} alt="playarea"></img>

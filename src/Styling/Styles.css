@@ -9,10 +9,10 @@
     color: white;
 }
 
-.playImg{
-    width: 100vw;
-    max-width: 100%;
+#playImg{
     height: auto;
+    width: 100%;
+    max-width: 100%;
 }
 
 #homePage{

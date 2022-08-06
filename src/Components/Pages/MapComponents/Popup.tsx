@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC } from "react";
 
 interface Props{
     coords: {x: number, y: number},
@@ -6,7 +6,10 @@ interface Props{
     updateClickDetect: (item: string) => void,
     feedbackPopup: boolean,
     textDisplay: string,
-    clickFail: boolean
+    clickFail: boolean,
+    clickStatusBaba: boolean,
+    clickStatusRyuk: boolean,
+    clickStatusPatrick: boolean
 }
 
 const Popup:FC<Props> = ({ 
@@ -15,7 +18,10 @@ const Popup:FC<Props> = ({
     updateClickDetect,
     feedbackPopup,
     textDisplay,
-    clickFail
+    clickFail,
+    clickStatusBaba,
+    clickStatusRyuk,
+    clickStatusPatrick
 }) => {
 
     return (
@@ -29,13 +35,25 @@ const Popup:FC<Props> = ({
                     display: `${clickDetect ? "flex" : "none"}`
                 }}
             >
-                <div className="itemTxt" onClick={() => {updateClickDetect('Yababa')}}>
+                <div 
+                    className="itemTxt" 
+                    style={{display:`${clickStatusBaba ? "none" : "flex"}`}}
+                    onClick={() => {updateClickDetect('Yababa')}}
+                >
                     Yababa
                 </div>
-                <div className="itemTxt" onClick={() => {updateClickDetect('Ryuk')}}>
+                <div 
+                    className="itemTxt" 
+                    style={{display:`${clickStatusRyuk ? "none" : "flex"}`}}
+                    onClick={() => {updateClickDetect('Ryuk')}}
+                >
                     Ryuk
                 </div>
-                <div className="itemTxt" onClick={() => {updateClickDetect('Patrick')}}>
+                <div 
+                    className="itemTxt" 
+                    style={{display:`${clickStatusPatrick ? "none" : "flex"}`}}
+                    onClick={() => {updateClickDetect('Patrick')}}
+                >
                     Patrick
                 </div>
             </div>

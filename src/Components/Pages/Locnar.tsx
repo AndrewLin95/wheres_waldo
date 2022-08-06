@@ -133,7 +133,17 @@ const Locnar:FC = () => {
     return (
         <>
             <img id="playImg" src={require('../../Assets/the-loc-nar.jpg')} alt="playarea"></img>
-            <Popup coords={coords} clickDetect={clickDetect} updateClickDetect={updateClickDetect} clickFail={clickFail} feedbackPopup={feedbackPopup} textDisplay={textDisplay}/>
+            <Popup 
+                coords={coords} 
+                clickDetect={clickDetect} 
+                updateClickDetect={updateClickDetect} 
+                clickFail={clickFail} 
+                feedbackPopup={feedbackPopup} 
+                textDisplay={textDisplay} 
+                clickStatusBaba={clickStatusBaba}
+                clickStatusRyuk={clickStatusRyuk}
+                clickStatusPatrick={clickStatusPatrick}
+            />
         </>
     )
 }

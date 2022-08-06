@@ -16,7 +16,15 @@ const Locnar:FC = () => {
     const [babaCoords, setBabaCoords] = useState({x: 0, y: 0});
     const [ryukCoords, setRyukCoords] = useState({x: 0, y: 0});
     const [patrickCoords, setPatrickCoords] = useState({x: 0, y: 0});
+    const [initialize, setInitialize] = useState (false);
     const [clickDetect, setClickDetect] = useState(false);
+    const [clickFail, setClickFail] = useState(false);
+
+    const [clickStatusBaba, setClickStatusBaba] = useState(false);
+    const [clickStatusRyuk, setClickStatusRyuk] = useState(false);
+    const [clickStatusPatrick, setClickStatusPatrick] = useState(false);
+    const [feedbackPopup, setFeedbackPopup] = useState(false);
+    const [textDisplay, setTextDisplay] = useState('');
 
     // On mouseclick, update Coords with the clicked
     useEffect(() => {
@@ -46,7 +54,7 @@ const Locnar:FC = () => {
             const updateYCoords = (yCords: number) => {
                 return (Math.round((yCords * ((window.innerWidth/0.237) / 8433))*100)/100)
             }
-
+            console.log('resize');
             setBabaCoords({
                 x: updateXCoords(1030),
                 y: updateYCoords(481)
@@ -60,40 +68,57 @@ const Locnar:FC = () => {
                 y: updateYCoords(6487)
             })
         }, 1000);
+        
+        if (!initialize){
+            deHandleResize()
+            setInitialize(true);
+        }
 
         window.addEventListener('resize', deHandleResize);
         return () => {
             window.removeEventListener('resize', deHandleResize);
         }
-    })
+    }, [initialize])
 
     // checks if the item was clicked
     const updateClickDetect = ( itemName: string ) =>{
         const checkClick = (clickX: number, clickY: number, itemX: number, itemY: number, xleniency: number, yleniency: number) => {
             if (itemX > (clickX - clickX*xleniency) && itemX < (clickX + clickX*xleniency) && itemY > (clickY - clickY*yleniency) && itemY < (clickY + clickY*yleniency)){
+                setFeedbackPopup(true);
+                setTextDisplay(itemName);
+                setTimeout(()=>{
+                    setFeedbackPopup(false);
+                }, 2000)
                 return true;
             } 
+            setClickFail(true);
+            setTimeout(()=>{
+                setClickFail(false);
+            }, 2000)
             return false;
         };
 
         switch (itemName){
-            case 'yababa':
+            case 'Yababa':
                 if (checkClick(coords.x, coords.y, babaCoords.x, babaCoords.y, 0.03, 0.10)) {
                     console.log('clicked Yababa');
+                    setClickStatusBaba(true);
                 } else{
                     console.log('try again');
                 }
                 break;
-            case 'ryuk':
+            case 'Ryuk':
                 if (checkClick(coords.x, coords.y, ryukCoords.x, ryukCoords.y, 0.10, 0.017)) {
                     console.log('clicked Ryuk');
+                    setClickStatusRyuk(true);
                 } else{
                     console.log('try again');
                 }
                 break;
-            case 'patrick':
+            case 'Patrick':
                 if (checkClick(coords.x, coords.y, patrickCoords.x, patrickCoords.y, 0.017, 0.0055)) {
                     console.log('clicked Patrick');
+                    setClickStatusPatrick(true);
                 } else{
                     console.log('try again');
                 }
@@ -108,7 +133,7 @@ const Locnar:FC = () => {
     return (
         <>
             <img id="playImg" src={require('../../Assets/the-loc-nar.jpg')} alt="playarea"></img>
-            <Popup coords={coords} clickDetect={clickDetect} updateClickDetect={updateClickDetect}/>
+            <Popup coords={coords} clickDetect={clickDetect} updateClickDetect={updateClickDetect} clickFail={clickFail} feedbackPopup={feedbackPopup} textDisplay={textDisplay}/>
         </>
     )
 }

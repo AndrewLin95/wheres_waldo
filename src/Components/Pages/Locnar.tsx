@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useEffect, useState } from "react";
 import debounce from "../Utilities/debounce";
 import Popup from "./MapComponents/Popup";
+import Instructions from "./MapComponents/Instructions";
 
 // on click, setstate coordinates. -> popup choosebox.
 // if item was clicked, change state of item to true. 
@@ -97,17 +98,12 @@ const Locnar:FC = () => {
                 y: updateYCoords(6487)
             })
         }, 1000);
-        
-        if (!initialize){
-            deHandleResize()
-            setInitialize(true);
-        }
-
+    
         window.addEventListener('resize', deHandleResize);
         return () => {
             window.removeEventListener('resize', deHandleResize);
         }
-    }, [initialize])
+    })
 
     // checks if the item was clicked
     const updateClickDetect = ( itemName: string ) =>{
@@ -159,9 +155,14 @@ const Locnar:FC = () => {
         setClickDetect(false);
     }
 
+    const startGame = () => {
+        setInitialize(true);
+    }
+
     return (
         <>
             <img id="playImg" src={require('../../Assets/the-loc-nar.jpg')} alt="playarea"></img>
+            <Instructions initialize={initialize} startGame={startGame}/>
             <Popup 
                 coords={coords} 
                 clickDetect={clickDetect} 

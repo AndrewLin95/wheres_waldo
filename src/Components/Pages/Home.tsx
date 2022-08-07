@@ -7,7 +7,7 @@ const Home:FC = () => {
             <div id="selectLevelTxt">Select Your Level</div>
             <div id="levelContainer">
                 <div className="levelCards">
-                    <img className="imgPreview" src={require("../../Assets/locnarPreview.jpg")}></img>
+                    <img className="imgPreview" src={require("../../Assets/locnarPreview.jpg")} alt="locnar"></img>
                     <div className="levelTxt">
                         <div>The Loc Nar</div>
                         <div>By: Egor Klyuchnyk</div>

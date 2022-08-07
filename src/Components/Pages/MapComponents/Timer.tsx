@@ -17,17 +17,17 @@ const Timer:FC<Props> = ({ initialize }) => {
     useEffect(()=>{
         let seconds = 0;
         let minutes = 0;
-        if (timer <= 9){
-            seconds = timer;
-            setDisplayTime(`0:0${seconds}`);
-            return;
-        } else if(timer < 60){
+        if (timer < 60){
             seconds = timer;
         } else if (timer >= 60){
             seconds = timer % 60
             minutes = Math.floor(timer / 60)
         }
-        setDisplayTime(`${minutes}:${seconds}`)
+        if (seconds < 9){
+            setDisplayTime(`${minutes}:0${seconds}`)
+        } else if (seconds >= 10){
+            setDisplayTime(`${minutes}:${seconds}`)
+        }
     }, [timer])
 
     return (

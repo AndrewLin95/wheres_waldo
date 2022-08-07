@@ -38,7 +38,7 @@ const Popup:FC<Props> = ({
                 <div 
                     className="itemTxt" 
                     style={{display:`${clickStatusBaba ? "none" : "flex"}`}}
-                    onClick={() => {updateClickDetect('Yababa')}}
+                    onClick={() => {updateClickDetect('Yubaba')}}
                 >
                     Yababa
                 </div>
@@ -64,19 +64,17 @@ const Popup:FC<Props> = ({
                     position: 'fixed',
                     top: '10vh',
                     display: `${feedbackPopup ? "flex" : "none"}`,
-                    color: "white"
                 }}
             >
                 You found {textDisplay}!
             </div>
 
             <div
-                className="clickAlertFail"
+                className="clickAlert fail"
                 style={{
                     position: 'fixed',
                     top: '10vh',
                     display: `${clickFail ? "flex" : "none"}`,
-                    color: "white"
                 }}
             >
                 Try again!

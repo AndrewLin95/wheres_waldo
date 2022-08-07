@@ -58,6 +58,15 @@
     width: 45%;
 }
 
+#timerContainer{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    top: 1.6em;
+    color: white;
+}
+
 .popup{
     background: rgba(255,255,255,0.7);
     height: auto;

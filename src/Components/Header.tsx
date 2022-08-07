@@ -4,7 +4,7 @@ const Header = () => {
     return(
         <div id="headerComponent">
             <Link to='/wheres_waldo/'>Find the Object!</Link>
-            <div>TIMER</div>
+            <div></div>
             <div>Whats left</div>
         </div>
     )

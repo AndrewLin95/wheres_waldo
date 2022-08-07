@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useEffect, useState } from "react";
 import debounce from "../Utilities/debounce";
+import Timer from "./MapComponents/Timer";
 import Popup from "./MapComponents/Popup";
 import Instructions from "./MapComponents/Instructions";
 
@@ -163,6 +164,7 @@ const Locnar:FC = () => {
 
     return (
         <>
+            <Timer initialize={initialize}/>
             <img id="playImg" src={require('../../Assets/the-loc-nar.jpg')} alt="playarea"></img>
             <Instructions initialize={initialize} startGame={startGame}/>
             <Popup 

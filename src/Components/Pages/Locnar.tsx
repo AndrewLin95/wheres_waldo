@@ -10,9 +10,18 @@ import Popup from "./MapComponents/Popup";
 // Should put this login in App. since it can be passed down into each map.
 // Have a state that stores the click status of each item. If one of them was clicked, remove them from the popup.
 
+import { query, collection, getDocs } from 'firebase/firestore';
+import db from "../../Firebase/firebase-config";
+
+interface firebaseCoords{
+    key: string;
+    x: number;
+    y: number;
+}
 
 const Locnar:FC = () => {
     const [coords, setCoords] = useState({x: 0, y: 0});
+    const [firebaseCoords, setFirebaseCoords] = useState<firebaseCoords[]>([]);
     const [babaCoords, setBabaCoords] = useState({x: 0, y: 0});
     const [ryukCoords, setRyukCoords] = useState({x: 0, y: 0});
     const [patrickCoords, setPatrickCoords] = useState({x: 0, y: 0});
@@ -25,6 +34,26 @@ const Locnar:FC = () => {
     const [clickStatusPatrick, setClickStatusPatrick] = useState(false);
     const [feedbackPopup, setFeedbackPopup] = useState(false);
     const [textDisplay, setTextDisplay] = useState('');
+
+    //https://firebase.google.com/docs/firestore/query-data/get-data
+    async function getLocation (){
+        try{
+            const q = query(collection(db, "location"));
+
+            const querySnapshop = await getDocs(q);
+            querySnapshop.forEach((doc) => {
+                let newKeyValue:{key: string, x: number, y: number} = {key: doc.data()[`id`], x: doc.data()[`coordsX`], y: doc.data()[`coordsY`]}; 
+                let tempArray = firebaseCoords;
+                console.log(tempArray);
+                tempArray.push(newKeyValue);
+                setFirebaseCoords(tempArray);
+            })
+        }
+        catch(err){
+            console.log(err);
+        }
+        console.log(firebaseCoords);
+    }
 
     // On mouseclick, update Coords with the clicked
     useEffect(() => {
@@ -99,9 +128,9 @@ const Locnar:FC = () => {
         };
 
         switch (itemName){
-            case 'Yababa':
+            case 'Yubaba':
                 if (checkClick(coords.x, coords.y, babaCoords.x, babaCoords.y, 0.03, 0.10)) {
-                    console.log('clicked Yababa');
+                    console.log('clicked Yubaba');
                     setClickStatusBaba(true);
                 } else{
                     console.log('try again');

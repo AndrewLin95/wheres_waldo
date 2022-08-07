@@ -37,7 +37,7 @@ const Locnar:FC = () => {
     const [textDisplay, setTextDisplay] = useState('');
 
     //https://firebase.google.com/docs/firestore/query-data/get-data
-    async function getLocation (){
+    async function getLocation(){
         try{
             const q = query(collection(db, "location"));
 
@@ -53,7 +53,6 @@ const Locnar:FC = () => {
         catch(err){
             console.log(err);
         }
-        console.log(firebaseCoords);
     }
 
     // On mouseclick, update Coords with the clicked
@@ -68,6 +67,8 @@ const Locnar:FC = () => {
                 setClickDetect(false);
             }
         };
+        console.log(firebaseCoords);
+        
         const playImg = document.querySelector('#playImg');
         playImg?.addEventListener('mousedown', handleMouseClick);
         return () => {
@@ -86,24 +87,24 @@ const Locnar:FC = () => {
             }
             console.log('resize');
             setBabaCoords({
-                x: updateXCoords(1030),
-                y: updateYCoords(481)
+                x: updateXCoords(firebaseCoords[2].x),
+                y: updateYCoords(firebaseCoords[2].y)
             })
             setRyukCoords({
-                x: updateXCoords(345),
-                y: updateYCoords(3868)
+                x: updateXCoords(firebaseCoords[0].x),
+                y: updateYCoords(firebaseCoords[0].y)
             })
             setPatrickCoords({
-                x: updateXCoords(1314),
-                y: updateYCoords(6487)
+                x: updateXCoords(firebaseCoords[1].x),
+                y: updateYCoords(firebaseCoords[1].y)
             })
         }, 1000);
-    
+        deHandleResize();
         window.addEventListener('resize', deHandleResize);
         return () => {
             window.removeEventListener('resize', deHandleResize);
         }
-    })
+    }, [initialize, firebaseCoords])
 
     // checks if the item was clicked
     const updateClickDetect = ( itemName: string ) =>{
@@ -141,7 +142,7 @@ const Locnar:FC = () => {
                 }
                 break;
             case 'Patrick':
-                if (checkClick(coords.x, coords.y, patrickCoords.x, patrickCoords.y, 0.017, 0.0055)) {
+                if (checkClick(coords.x, coords.y, patrickCoords.x, patrickCoords.y, 0.017, 0.0062)) {
                     console.log('clicked Patrick');
                     setClickStatusPatrick(true);
                 } else{
@@ -156,6 +157,7 @@ const Locnar:FC = () => {
     }
 
     const startGame = () => {
+        getLocation();
         setInitialize(true);
     }
 

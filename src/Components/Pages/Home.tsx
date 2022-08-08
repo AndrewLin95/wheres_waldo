@@ -9,10 +9,31 @@ const Home:FC = () => {
                 <div className="levelCards">
                     <img className="imgPreview" src={require("../../Assets/locnarPreview.jpg")} alt="locnar"></img>
                     <div className="levelTxt">
-                        <div>The Loc Nar</div>
+                        <div className="instructionTitle">The Loc Nar</div>
                         <div>By: Egor Klyuchnyk</div>
                         <div>Difficulty: Hard</div>
-                        <Link to='/wheres_waldo/locnar'>Start Loc Nar!</Link>
+                        <div className="character small">
+                            <img className="characterPreview" src={require("../../Assets/yubabaPreview.png")} alt="yubabaPreview"></img>
+                            <div className="characterText">
+                                <div className="characterName">Yubaba</div>
+                                <div>Spirited Away</div>
+                            </div>
+                        </div>
+                        <div className="character small">
+                            <img className="characterPreview" src={require("../../Assets/ryukPreview.png")} alt="yubabaPreview"></img>
+                            <div className="characterText">
+                                <div className="characterName">Ryuk</div>
+                                <div>Death Note</div>
+                            </div>
+                        </div>
+                        <div className="character small">
+                            <img className="characterPreview" src={require("../../Assets/patrickPreview.png")} alt="yubabaPreview"></img>
+                            <div className="characterText">
+                                <div className="characterName">Patrick</div>
+                                <div>Spongebob</div>
+                            </div>
+                        </div>
+                        <Link className="startLevel" to='/wheres_waldo/locnar' style={{textDecoration: 'none'}}>Start Loc Nar!</Link>
                     </div>
                 </div>
                 <div className="levelCards">

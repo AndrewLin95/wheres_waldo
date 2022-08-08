@@ -40,7 +40,7 @@ const Popup:FC<Props> = ({
                     style={{display:`${clickStatusBaba ? "none" : "flex"}`}}
                     onClick={() => {updateClickDetect('Yubaba')}}
                 >
-                    Yababa
+                    Yubaba
                 </div>
                 <div 
                     className="itemTxt" 

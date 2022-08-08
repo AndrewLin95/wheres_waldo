@@ -165,6 +165,14 @@ const Locnar:FC = () => {
         setInitialize(true);
     }
 
+    const restartGame = () => {
+        setInitialize(false);
+        setClickStatusBaba(false);
+        setClickStatusRyuk(false);
+        setClickStatusPatrick(false);
+        setEndGame(false);
+    }
+
     useEffect(() => {
         if (clickStatusBaba && clickStatusRyuk && clickStatusPatrick){
             setEndGame(true);
@@ -173,7 +181,7 @@ const Locnar:FC = () => {
 
     return (
         <>
-            <Timer initialize={initialize} endGame={endGame}/>
+            <Timer initialize={initialize} endGame={endGame} restartGame={restartGame}/>
             <img id="playImg" src={require('../../Assets/the-loc-nar.jpg')} alt="playarea"></img>
             <Instructions initialize={initialize} startGame={startGame}/>
             <Popup 

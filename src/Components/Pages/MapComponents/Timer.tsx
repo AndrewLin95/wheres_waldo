@@ -4,12 +4,12 @@ import WinScreen from "./WinScreen";
 interface Props{
     initialize: boolean;
     endGame: boolean;
+    restartGame: () => void;
 }
 
-const Timer:FC<Props> = ({ initialize, endGame }) => {
+const Timer:FC<Props> = ({ initialize, endGame, restartGame }) => {
     const [timer, setTimer] = useState(0);
     const [displayTime, setDisplayTime] = useState('0:00')
-    const [sendTime, setSendTime] = useState(false);
 
     if (initialize && !endGame){
         setTimeout(() => {
@@ -38,7 +38,7 @@ const Timer:FC<Props> = ({ initialize, endGame }) => {
             <div id="timerContainer">
                 {displayTime}
             </div>
-            <WinScreen endGame={endGame} displayTime={displayTime}/>
+            <WinScreen endGame={endGame} displayTime={displayTime} restartGame={restartGame}/>
         </>
     )
 }

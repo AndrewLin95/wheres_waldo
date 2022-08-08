@@ -1,11 +1,13 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom'
 
 interface Props{
     endGame: boolean;
     displayTime: string;
+    restartGame: () => void;
 }
 
-const WinScreen:FC<Props> = ({ endGame, displayTime }) => {
+const WinScreen:FC<Props> = ({ endGame, displayTime, restartGame }) => {
     
     if (endGame){
         return(
@@ -17,7 +19,7 @@ const WinScreen:FC<Props> = ({ endGame, displayTime }) => {
                     <div id='scoreContainer'>
                         <div>Time</div>
                         <div>{displayTime}</div>
-                        <button id='restartBtn'>Restart</button>
+                        <Link to='/wheres_waldo/' id='restartBtn' onClick={restartGame}>Restart</Link>
                     </div>
                 </div>
             </div>

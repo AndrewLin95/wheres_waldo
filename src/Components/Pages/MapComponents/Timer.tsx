@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react';
+import WinScreen from "./WinScreen";
 
 interface Props{
     initialize: boolean;
@@ -8,6 +9,7 @@ interface Props{
 const Timer:FC<Props> = ({ initialize, endGame }) => {
     const [timer, setTimer] = useState(0);
     const [displayTime, setDisplayTime] = useState('0:00')
+    const [sendTime, setSendTime] = useState(false);
 
     if (initialize && !endGame){
         setTimeout(() => {
@@ -32,9 +34,12 @@ const Timer:FC<Props> = ({ initialize, endGame }) => {
     }, [timer])
 
     return (
-        <div id="timerContainer">
-            {displayTime}
-        </div>
+        <>
+            <div id="timerContainer">
+                {displayTime}
+            </div>
+            <WinScreen endGame={endGame} displayTime={displayTime}/>
+        </>
     )
 }
 

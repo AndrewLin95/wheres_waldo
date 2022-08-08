@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/wheres_waldo/static/css/main.98b42f1b.css",
+    "main.js": "/wheres_waldo/static/js/main.2fca2be8.js",
+    "static/media/the-loc-nar.jpg": "/wheres_waldo/static/media/the-loc-nar.314cec99f414807b7e27.jpg",
+    "static/media/ryukPreview.png": "/wheres_waldo/static/media/ryukPreview.e39036e02123e0fc429b.png",
+    "static/media/patrickPreview.png": "/wheres_waldo/static/media/patrickPreview.0f99d73f8caf6bc70ffe.png",
+    "static/media/locnarPreview.jpg": "/wheres_waldo/static/media/locnarPreview.1b869cbc1bfb4639597a.jpg",
+    "static/media/yubabaPreview.png": "/wheres_waldo/static/media/yubabaPreview.2b1e909aa8f941e5bc93.png",
+    "index.html": "/wheres_waldo/index.html",
+    "main.98b42f1b.css.map": "/wheres_waldo/static/css/main.98b42f1b.css.map",
+    "main.2fca2be8.js.map": "/wheres_waldo/static/js/main.2fca2be8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.98b42f1b.css",
+    "static/js/main.2fca2be8.js"
+  ]
+}

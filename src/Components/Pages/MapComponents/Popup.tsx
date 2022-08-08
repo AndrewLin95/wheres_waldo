@@ -30,7 +30,7 @@ const Popup:FC<Props> = ({
                 className='popup'
                 style={{
                     position:'absolute', 
-                    top: `${coords.y + 68}px`,
+                    top: `${coords.y}px`,
                     left: `${coords.x + 30}px`,
                     display: `${clickDetect ? "flex" : "none"}`
                 }}

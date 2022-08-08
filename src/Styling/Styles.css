@@ -1,4 +1,6 @@
 #headerComponent{
+    position: fixed;
+    top: 0px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -59,7 +61,8 @@
 }
 
 #timerContainer{
-    position: absolute;
+    position: fixed;
+    z-index: 5;
     display: flex;
     justify-content: center;
     width: 100vw;

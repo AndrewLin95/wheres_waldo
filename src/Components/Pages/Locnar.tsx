@@ -34,6 +34,8 @@ const Locnar:FC = () => {
     const [clickStatusBaba, setClickStatusBaba] = useState(false);
     const [clickStatusRyuk, setClickStatusRyuk] = useState(false);
     const [clickStatusPatrick, setClickStatusPatrick] = useState(false);
+    const [endGame, setEndGame] = useState(false);
+
     const [feedbackPopup, setFeedbackPopup] = useState(false);
     const [textDisplay, setTextDisplay] = useState('');
 
@@ -61,7 +63,7 @@ const Locnar:FC = () => {
         const handleMouseClick = (e: any) => {
             setCoords({
                 x: e.clientX,
-                y: e.pageY - 68, // 68 is the offset in piexels from the header
+                y: e.pageY, 
             })
             setClickDetect(true);
             if (clickDetect){
@@ -81,10 +83,10 @@ const Locnar:FC = () => {
     useEffect(() =>{
         const deHandleResize = debounce(function handleResize(){
             const updateXCoords = (xCords: number) => {
-                return (Math.round((xCords * (window.innerWidth / 2000))*100)/100)
+                return (xCords * (window.innerWidth / 2000))
             };
             const updateYCoords = (yCords: number) => {
-                return (Math.round((yCords * ((window.innerWidth/0.237) / 8433))*100)/100)
+                return (yCords * ((window.innerWidth/(2000/8433)) / 8433))
             }
             console.log('resize');
             setBabaCoords({
@@ -135,7 +137,7 @@ const Locnar:FC = () => {
                 }
                 break;
             case 'Ryuk':
-                if (checkClick(coords.x, coords.y, ryukCoords.x, ryukCoords.y, 0.10, 0.017)) {
+                if (checkClick(coords.x, coords.y, ryukCoords.x, ryukCoords.y, 0.09, 0.025)) {
                     console.log('clicked Ryuk');
                     setClickStatusRyuk(true);
                 } else{
@@ -143,7 +145,7 @@ const Locnar:FC = () => {
                 }
                 break;
             case 'Patrick':
-                if (checkClick(coords.x, coords.y, patrickCoords.x, patrickCoords.y, 0.017, 0.0062)) {
+                if (checkClick(coords.x, coords.y, patrickCoords.x, patrickCoords.y, 0.02, 0.0075)) {
                     console.log('clicked Patrick');
                     setClickStatusPatrick(true);
                 } else{
@@ -153,7 +155,8 @@ const Locnar:FC = () => {
             default:
                 console.log('default');
         }
-        console.log(coords);
+        console.log(patrickCoords);
+        console.log(`mouseclick: x: ${coords.x} y: ${coords.y}`);
         setClickDetect(false);
     }
 
@@ -162,9 +165,15 @@ const Locnar:FC = () => {
         setInitialize(true);
     }
 
+    useEffect(() => {
+        if (clickStatusBaba && clickStatusRyuk && clickStatusPatrick){
+            setEndGame(true);
+        }
+    }, [clickStatusBaba, clickStatusRyuk, clickStatusPatrick])
+
     return (
         <>
-            <Timer initialize={initialize}/>
+            <Timer initialize={initialize} endGame={endGame}/>
             <img id="playImg" src={require('../../Assets/the-loc-nar.jpg')} alt="playarea"></img>
             <Instructions initialize={initialize} startGame={startGame}/>
             <Popup 

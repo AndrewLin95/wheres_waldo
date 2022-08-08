@@ -2,13 +2,14 @@ import { FC, useEffect, useState } from 'react';
 
 interface Props{
     initialize: boolean;
+    endGame: boolean;
 }
 
-const Timer:FC<Props> = ({ initialize }) => {
+const Timer:FC<Props> = ({ initialize, endGame }) => {
     const [timer, setTimer] = useState(0);
     const [displayTime, setDisplayTime] = useState('0:00')
 
-    if (initialize){
+    if (initialize && !endGame){
         setTimeout(() => {
             setTimer(timer + 1)
         }, 1000);

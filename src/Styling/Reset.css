@@ -49,3 +49,10 @@ table {
 a, a:visited, a:active {
     color: inherit;
 }
+html {
+	overflow-y: scroll;
+  }
+::-webkit-scrollbar {
+	width: 0px;
+	background: transparent; /* make scrollbar transparent */
+}

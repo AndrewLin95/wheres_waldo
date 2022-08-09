@@ -33,6 +33,12 @@
     max-height: 100%;
 }
 
+#selectLevelTxt{
+    font-size: larger;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+
 #levelContainer{
     display: flex;
     flex-direction: row;
@@ -388,6 +394,11 @@
 }
 
 @media (max-width: 600px){
+    #selectLevelTxt{
+        margin-top: 1.5em;
+        margin-bottom: 1em;
+    }
+   
     #instructionContainer{
         height: 400px;
         width: 300px;

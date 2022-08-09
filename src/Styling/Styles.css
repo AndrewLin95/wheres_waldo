@@ -29,7 +29,7 @@
     align-items: center;
     padding-top: 7em;
     background: lightgrey;
-    height: 100vh;
+    height: calc(100vh - 7em);
     max-height: 100%;
 }
 
@@ -310,4 +310,74 @@
 .characterName{
     font-size: larger;
     font-weight: bold;
+}
+
+
+@media (max-width: 1250px){
+    /* homepage */
+    .levelCards{
+        width: 400px;
+        height: 400px;
+    }
+    
+    .imgPreview{
+        width: 45%;
+    }
+    
+    .imgPreview:hover{
+        transform: scale(1.2);
+    }
+    
+    .levelTxt{
+        padding-top: 1em;
+        gap: 0.3em;
+        width: 55%;
+    }
+    
+    .startLevel{
+        font-size: 0.9em;
+    }
+
+    .character{
+        height: 75px;
+        width: 90%;
+        margin-top: 0.4em;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .characterPreview{
+        height: 100%;
+        width: 75px;
+    }
+}
+
+@media (max-width: 1000px){
+    #levelContainer{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 500px){
+    .levelCards{
+        width: 250px;
+    }
+    
+    .imgPreview{
+        display: none;
+        width: 0%;
+    }
+    
+    .levelTxt{
+        align-items: center;
+        border: black 1px solid;
+        width: 100%
+    }
+
+    #homePage{
+        overflow-y: auto;
+        padding-top: 4em;
+        height: calc(100vh - 4em);
+    }
 }

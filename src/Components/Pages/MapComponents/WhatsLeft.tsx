@@ -28,7 +28,12 @@ const WhatsLeft:FC<Props> = ({
             <div id="whatsLeftContainer" onClick={toggleWhatsLeftClick}>
                 {numRemaining}
             </div>
-            <WhatsLeftPopup toggleWhatsLeft={toggleWhatsLeft}/>
+            <WhatsLeftPopup 
+                toggleWhatsLeft={toggleWhatsLeft}
+                clickStatusBaba={clickStatusBaba}
+                clickStatusRyuk={clickStatusRyuk}
+                clickStatusPatrick={clickStatusPatrick}
+            />
         </>
     )
 }

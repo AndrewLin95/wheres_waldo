@@ -188,7 +188,8 @@ const Locnar:FC = () => {
             <WhatsLeft
                 clickStatusBaba={clickStatusBaba}
                 clickStatusRyuk={clickStatusRyuk}
-                clickStatusPatrick={clickStatusPatrick}/>
+                clickStatusPatrick={clickStatusPatrick}
+            />
             <Popup 
                 coords={coords} 
                 clickDetect={clickDetect} 

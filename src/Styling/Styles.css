@@ -252,12 +252,16 @@
     top: 0.5em;
     right: 18vw;
     border-radius: 50%;
-    background: darkred;
+    background: rgb(139, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.4em;
     color: white;
+}
+
+#whatsLeftContainer:hover{
+    background: rgba(139,0,0,0.7);
 }
 
 #whatsLeftPopup{

@@ -38,22 +38,22 @@ const WhatsLeftPopup:FC<Props> = ({
         return (
             <div id="whatsLeftPopup">
                 <div className="characterHalf">
-                    <img className="characterPreview" src={require(`../../../Assets/yubabaPreview${hide.baba}.png`)} alt="yubabaPreview"></img>
-                    <div className="characterText">
+                    <img className="characterPreview PU" src={require(`../../../Assets/yubabaPreview${hide.baba}.png`)} alt="yubabaPreview"></img>
+                    <div className="characterText PUtext">
                         <div className="characterName">Yubaba</div>
                         <div>Spirited Away</div>
                     </div>
                 </div>
                 <div className="characterHalf">
-                    <img className="characterPreview" src={require(`../../../Assets/ryukPreview${hide.ryuk}.png`)} alt="ryukPreview"></img>
-                    <div className="characterText">
+                    <img className="characterPreview PU" src={require(`../../../Assets/ryukPreview${hide.ryuk}.png`)} alt="ryukPreview"></img>
+                    <div className="characterText PUtext">
                         <div className="characterName">Ryuk</div>
                         <div>Death Note</div>
                     </div>
                 </div>
                 <div className="characterHalf">
-                    <img className="characterPreview" src={require(`../../../Assets/patrickPreview${hide.pat}.png`)} alt="patrickPreview"></img>
-                    <div className="characterText">
+                    <img className="characterPreview PU" src={require(`../../../Assets/patrickPreview${hide.pat}.png`)} alt="patrickPreview"></img>
+                    <div className="characterText PUtext">
                         <div className="characterName">Patrick</div>
                         <div>Spongebob</div>
                     </div>

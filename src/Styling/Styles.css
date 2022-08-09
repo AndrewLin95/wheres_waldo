@@ -7,7 +7,7 @@
     height: 5vh;
     width: 100vw;
     max-width: 100%;
-    background: black;
+    background: rgba(25, 0, 40);
     color: white;
 }
 
@@ -116,7 +116,6 @@
     display: flex;
     height: 500px;
     width: 600px;
-    display: flex;
     justify-content: center;
     border-radius: 10%;
 }
@@ -242,4 +241,69 @@
     font-size: 1em;
     padding: 0.4em;
     background: lightgrey;
+}
+
+/* whats left*/
+#whatsLeftContainer{
+    position: fixed;
+    height: 2em;
+    width: 2em;
+    border: solid red 1px;
+    top: 0.5em;
+    right: 18vw;
+    border-radius: 50%;
+    background: darkred;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4em;
+    color: white;
+}
+
+#whatsLeftPopup{
+    position: fixed;
+    top: 4.2em;
+    right: 12vw;
+    background: rgba(34, 1, 53, 0.7);
+    height: 5em;
+    width: 5em;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    width: 300px;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.characterHalf{
+    height: 75px;
+    width: 90%;
+    margin-top: 0.4em;
+    display: flex;
+    flex-direction: row;
+}
+
+.characterPreview{
+    height: 100%;
+    width: 200px;
+    object-fit: contain;
+}
+
+.characterText{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.characterName{
+    font-size: larger;
+    font-weight: bold;
 }

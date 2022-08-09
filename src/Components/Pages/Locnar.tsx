@@ -4,6 +4,7 @@ import debounce from "../Utilities/debounce";
 import Timer from "./MapComponents/Timer";
 import Popup from "./MapComponents/Popup";
 import Instructions from "./MapComponents/Instructions";
+import WhatsLeft from "./MapComponents/WhatsLeft";
 
 // on click, setstate coordinates. -> popup choosebox.
 // if item was clicked, change state of item to true. 
@@ -184,6 +185,10 @@ const Locnar:FC = () => {
             <Timer initialize={initialize} endGame={endGame} restartGame={restartGame}/>
             <img id="playImg" src={require('../../Assets/the-loc-nar.jpg')} alt="playarea"></img>
             <Instructions initialize={initialize} startGame={startGame}/>
+            <WhatsLeft
+                clickStatusBaba={clickStatusBaba}
+                clickStatusRyuk={clickStatusRyuk}
+                clickStatusPatrick={clickStatusPatrick}/>
             <Popup 
                 coords={coords} 
                 clickDetect={clickDetect} 

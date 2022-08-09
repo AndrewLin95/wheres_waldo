@@ -5,7 +5,7 @@ const Header = () => {
         <div id="headerComponent">
             <Link id='gameTitle' to='/wheres_waldo/' style={{textDecoration: 'none'}}>Find the Object!</Link>
             <div></div>
-            <div>Whats left</div>
+            <div></div>
         </div>
     )
 }

@@ -1,22 +1,32 @@
 {
   "files": {
     "main.css": "/wheres_waldo/static/css/main.e47bd0e9.css",
-    "main.js": "/wheres_waldo/static/js/main.4ee3f7a7.js",
+    "main.js": "/wheres_waldo/static/js/main.1e90bd1f.js",
     "static/media/the-loc-nar.jpg": "/wheres_waldo/static/media/the-loc-nar.314cec99f414807b7e27.jpg",
+    "static/media/universe-113.jpg": "/wheres_waldo/static/media/universe-113.0d4fe7c106039f77baa0.jpg",
     "static/media/ryukPreview.png": "/wheres_waldo/static/media/ryukPreview.e39036e02123e0fc429b.png",
+    "static/media/benderPreview.png": "/wheres_waldo/static/media/benderPreview.a9cc7b7fc12e2a53bc43.png",
     "static/media/patrickPreview.png": "/wheres_waldo/static/media/patrickPreview.0f99d73f8caf6bc70ffe.png",
     "static/media/ryukPreviewHalf.png": "/wheres_waldo/static/media/ryukPreviewHalf.b94240a0db0a162fc8be.png",
     "static/media/locnarPreview.jpg": "/wheres_waldo/static/media/locnarPreview.1b869cbc1bfb4639597a.jpg",
+    "static/media/benderPreviewHalf.png": "/wheres_waldo/static/media/benderPreviewHalf.ac749c54e68d8125f9b2.png",
+    "static/media/universe-113Preview.jpg": "/wheres_waldo/static/media/universe-113Preview.1abbdb2244107f84f45b.jpg",
     "static/media/patrickPreviewHalf.png": "/wheres_waldo/static/media/patrickPreviewHalf.de2040c55fdd46bb7f8f.png",
+    "static/media/totoroPreview.png": "/wheres_waldo/static/media/totoroPreview.4ac9a40eff4a98ba279b.png",
+    "static/media/totoroPreviewHalf.png": "/wheres_waldo/static/media/totoroPreviewHalf.fa66be9ebb31a989f99c.png",
     "static/media/ryukPreviewHide.png": "/wheres_waldo/static/media/ryukPreviewHide.a1136b0c562df161825b.png",
     "static/media/yubabaPreview.png": "/wheres_waldo/static/media/yubabaPreview.2b1e909aa8f941e5bc93.png",
+    "static/media/jakePreview.png": "/wheres_waldo/static/media/jakePreview.761d9bd3a75c243b02fc.png",
     "static/media/yubabaPreviewHalf.png": "/wheres_waldo/static/media/yubabaPreviewHalf.05661ebb6159dd32b001.png",
+    "static/media/jakePreviewHalf.png": "/wheres_waldo/static/media/jakePreviewHalf.669a5ea8649bed16bc91.png",
+    "static/media/totoroPreviewHide.png": "/wheres_waldo/static/media/totoroPreviewHide.946ddbbf7cad7f24634d.png",
+    "static/media/benderPreviewHide.png": "/wheres_waldo/static/media/benderPreviewHide.8c8ef843a2ea1603e6e7.png",
     "index.html": "/wheres_waldo/index.html",
     "main.e47bd0e9.css.map": "/wheres_waldo/static/css/main.e47bd0e9.css.map",
-    "main.4ee3f7a7.js.map": "/wheres_waldo/static/js/main.4ee3f7a7.js.map"
+    "main.1e90bd1f.js.map": "/wheres_waldo/static/js/main.1e90bd1f.js.map"
   },
   "entrypoints": [
     "static/css/main.e47bd0e9.css",
-    "static/js/main.4ee3f7a7.js"
+    "static/js/main.1e90bd1f.js"
   ]
 }

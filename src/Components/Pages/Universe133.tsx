@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useEffect, useState } from "react";
 import debounce from "../Utilities/debounce";
-import Timer from "./MapComponents/Timer";
+import Timer from "./MapComponentUniverse/Timer"
 import Popup from "./MapComponentUniverse/Popup"
 import Instructions from "./MapComponentUniverse/Instructions"
 import WhatsLeft from "./MapComponentUniverse/WhatsLeft"

@@ -317,6 +317,9 @@
     font-weight: bold;
 }
 
+.scoreName{
+    width: 6.6em;
+}
 
 @media (max-width: 1250px){
     /* homepage */

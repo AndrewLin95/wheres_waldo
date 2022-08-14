@@ -27,7 +27,7 @@ const WinScreen:FC<Props> = ({ endGame, displayTime, timer }) => {
     }
 
     async function saveScore() {
-        await setDoc(doc(db, "scores", `${playerName} ${uniqid()}`), {
+        await setDoc(doc(db, "scoresUniverse", `${playerName} ${uniqid()}`), {
             name: playerName,
             time: displayTime,
             timer: timer
@@ -40,7 +40,7 @@ const WinScreen:FC<Props> = ({ endGame, displayTime, timer }) => {
             getCheckSubmit(true);
 
             try{
-                const q = query(collection(db, "scores"));
+                const q = query(collection(db, "scoresUniverse"));
                 const querySnapshop = await getDocs(q);
                 querySnapshop.forEach((doc) => {
                     let eachScore:{name: string, time: string, timer: number} = {name: doc.data()[`name`], time: doc.data()[`time`], timer: doc.data()[`timer`]}; 

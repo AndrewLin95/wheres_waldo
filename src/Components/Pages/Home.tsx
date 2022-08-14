@@ -37,9 +37,33 @@ const Home:FC = () => {
                     </div>
                 </div>
                 <div className="levelCards">
-                    <div>Preview Image on Left</div>
-                    <div>
-                        <div>Description + what you need to find + start button</div>
+                <img className="imgPreview" src={require("../../Assets/universe-113Preview.jpg")} alt="universe-133"></img>
+                    <div className="levelTxt">
+                        <div className="instructionTitle">Universe 133</div>
+                        <div>By: Egor Klyuchnyk</div>
+                        <div>Difficulty: Medium</div>
+                        <div className="character small">
+                            <img className="characterPreview" src={require("../../Assets/benderPreview.png")} alt="benderaPreview"></img>
+                            <div className="characterText">
+                                <div className="characterName">Bender</div>
+                                <div>Futurama</div>
+                            </div>
+                        </div>
+                        <div className="character small">
+                            <img className="characterPreview" src={require("../../Assets/totoroPreview.png")} alt="totoroPreview"></img>
+                            <div className="characterText">
+                                <div className="characterName">Totoro</div>
+                                <div>My Neightbor Toroto</div>
+                            </div>
+                        </div>
+                        <div className="character small">
+                            <img className="characterPreview" src={require("../../Assets/jakePreview.png")} alt="jakePreview"></img>
+                            <div className="characterText">
+                                <div className="characterName">Jake</div>
+                                <div>Adventure Time</div>
+                            </div>
+                        </div>
+                        <Link className="startLevel" to='/wheres_waldo/universe_133' style={{textDecoration: 'none'}}>Start Universe 133!</Link>
                     </div>
                 </div>
             </div>

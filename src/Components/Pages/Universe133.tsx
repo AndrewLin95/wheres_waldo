@@ -2,9 +2,9 @@ import { FC } from "react";
 import { useEffect, useState } from "react";
 import debounce from "../Utilities/debounce";
 import Timer from "./MapComponents/Timer";
-import Popup from "./MapComponents/Popup";
-import Instructions from "./MapComponents/Instructions";
-import WhatsLeft from "./MapComponents/WhatsLeft";
+import Popup from "./MapComponentUniverse/Popup"
+import Instructions from "./MapComponentUniverse/Instructions"
+import WhatsLeft from "./MapComponentUniverse/WhatsLeft"
 
 import { query, collection, getDocs } from 'firebase/firestore';
 import db from "../../Firebase/firebase-config";
@@ -15,19 +15,19 @@ interface firebaseCoords{
     y: number;
 }
 
-const Locnar:FC = () => {
+const Universe133:FC = () => {
     const [coords, setCoords] = useState({x: 0, y: 0});
     const [firebaseCoords, setFirebaseCoords] = useState<firebaseCoords[]>([]);
-    const [babaCoords, setBabaCoords] = useState({x: 0, y: 0});
-    const [ryukCoords, setRyukCoords] = useState({x: 0, y: 0});
-    const [patrickCoords, setPatrickCoords] = useState({x: 0, y: 0});
+    const [benderCoords, setBenderCoords] = useState({x: 0, y: 0});
+    const [totoroCoords, setTotoroCoords] = useState({x: 0, y: 0});
+    const [jakeCoords, setJakeCoords] = useState({x: 0, y: 0});
     const [initialize, setInitialize] = useState (false);
     const [clickDetect, setClickDetect] = useState(false);
     const [clickFail, setClickFail] = useState(false);
 
-    const [clickStatusBaba, setClickStatusBaba] = useState(false);
-    const [clickStatusRyuk, setClickStatusRyuk] = useState(false);
-    const [clickStatusPatrick, setClickStatusPatrick] = useState(false);
+    const [clickStatusBender, setClickStatusBender] = useState(false);
+    const [clickStatusTotoro, setClickStatusTotoro] = useState(false);
+    const [clickStatusJake, setClickStatusJake] = useState(false);
     const [endGame, setEndGame] = useState(false);
 
     const [feedbackPopup, setFeedbackPopup] = useState(false);
@@ -36,7 +36,7 @@ const Locnar:FC = () => {
     //https://firebase.google.com/docs/firestore/query-data/get-data
     async function getLocation(){
         try{
-            const q = query(collection(db, "location"));
+            const q = query(collection(db, "locationUniverse"));
 
             const querySnapshop = await getDocs(q);
             querySnapshop.forEach((doc) => {
@@ -64,8 +64,6 @@ const Locnar:FC = () => {
                 setClickDetect(false);
             }
         };
-        console.log(firebaseCoords);
-        
         const playImg = document.querySelector('#playImg');
         playImg?.addEventListener('mousedown', handleMouseClick);
         return () => {
@@ -77,21 +75,21 @@ const Locnar:FC = () => {
     useEffect(() =>{
         const deHandleResize = debounce(function handleResize(){
             const updateXCoords = (xCords: number) => {
-                return (xCords * (window.innerWidth / 2000))
+                return (xCords * (window.innerWidth / 1920))
             };
             const updateYCoords = (yCords: number) => {
-                return (yCords * ((window.innerWidth/(2000/8433)) / 8433))
+                return (yCords * ((window.innerWidth/(1920/2715)) / 2715))
             }
             console.log('resize');
-            setBabaCoords({
-                x: updateXCoords(firebaseCoords[2].x),
-                y: updateYCoords(firebaseCoords[2].y)
-            })
-            setRyukCoords({
+            setBenderCoords({
                 x: updateXCoords(firebaseCoords[0].x),
                 y: updateYCoords(firebaseCoords[0].y)
             })
-            setPatrickCoords({
+            setTotoroCoords({
+                x: updateXCoords(firebaseCoords[2].x),
+                y: updateYCoords(firebaseCoords[2].y)
+            })
+            setJakeCoords({
                 x: updateXCoords(firebaseCoords[1].x),
                 y: updateYCoords(firebaseCoords[1].y)
             })
@@ -122,26 +120,26 @@ const Locnar:FC = () => {
         };
 
         switch (itemName){
-            case 'Yubaba':
-                if (checkClick(coords.x, coords.y, babaCoords.x, babaCoords.y, 0.03, 0.10)) {
-                    console.log('clicked Yubaba');
-                    setClickStatusBaba(true);
+            case 'Bender':
+                if (checkClick(coords.x, coords.y, benderCoords.x, benderCoords.y, 0.007, 0.009)) {
+                    console.log('clicked Bender');
+                    setClickStatusBender(true);
                 } else{
                     console.log('try again');
                 }
                 break;
-            case 'Ryuk':
-                if (checkClick(coords.x, coords.y, ryukCoords.x, ryukCoords.y, 0.09, 0.025)) {
-                    console.log('clicked Ryuk');
-                    setClickStatusRyuk(true);
+            case 'Totoro':
+                if (checkClick(coords.x, coords.y, totoroCoords.x, totoroCoords.y, 0.016, 0.031)) {
+                    console.log('clicked Totoro');
+                    setClickStatusTotoro(true);
                 } else{
                     console.log('try again');
                 }
                 break;
-            case 'Patrick':
-                if (checkClick(coords.x, coords.y, patrickCoords.x, patrickCoords.y, 0.02, 0.0075)) {
-                    console.log('clicked Patrick');
-                    setClickStatusPatrick(true);
+            case 'Jake':
+                if (checkClick(coords.x, coords.y, jakeCoords.x, jakeCoords.y, 0.037, 0.022)) {
+                    console.log('clicked Jake');
+                    setClickStatusJake(true);
                 } else{
                     console.log('try again');
                 }
@@ -149,7 +147,6 @@ const Locnar:FC = () => {
             default:
                 console.log('default');
         }
-        console.log(patrickCoords);
         console.log(`mouseclick: x: ${coords.x} y: ${coords.y}`);
         setClickDetect(false);
     }
@@ -160,20 +157,20 @@ const Locnar:FC = () => {
     }
 
     useEffect(() => {
-        if (clickStatusBaba && clickStatusRyuk && clickStatusPatrick){
+        if (clickStatusBender && clickStatusTotoro && clickStatusJake){
             setEndGame(true);
         }
-    }, [clickStatusBaba, clickStatusRyuk, clickStatusPatrick])
+    }, [clickStatusBender, clickStatusTotoro, clickStatusJake])
 
     return (
         <>
             <Timer initialize={initialize} endGame={endGame}/>
-            <img id="playImg" src={require('../../Assets/the-loc-nar.jpg')} alt="playarea"></img>
+            <img id="playImg" src={require('../../Assets/universe-113.jpg')} alt="playarea"></img>
             <Instructions initialize={initialize} startGame={startGame}/>
             <WhatsLeft
-                clickStatusBaba={clickStatusBaba}
-                clickStatusRyuk={clickStatusRyuk}
-                clickStatusPatrick={clickStatusPatrick}
+                clickStatusBender={clickStatusBender}
+                clickStatusTotoro={clickStatusTotoro}
+                clickStatusJake={clickStatusJake}
             />
             <Popup 
                 coords={coords} 
@@ -182,12 +179,12 @@ const Locnar:FC = () => {
                 clickFail={clickFail} 
                 feedbackPopup={feedbackPopup} 
                 textDisplay={textDisplay} 
-                clickStatusBaba={clickStatusBaba}
-                clickStatusRyuk={clickStatusRyuk}
-                clickStatusPatrick={clickStatusPatrick}
+                clickStatusBender={clickStatusBender}
+                clickStatusTotoro={clickStatusTotoro}
+                clickStatusJake={clickStatusJake}
             />
         </>
     )
 }
 
-export default Locnar;
+export default Universe133;

@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom'
 interface Props{
     endGame: boolean;
     displayTime: string;
-    restartGame: () => void;
 }
 
-const WinScreen:FC<Props> = ({ endGame, displayTime, restartGame }) => {
+const WinScreen:FC<Props> = ({ endGame, displayTime }) => {
     
     if (endGame){
         return(
@@ -19,7 +18,7 @@ const WinScreen:FC<Props> = ({ endGame, displayTime, restartGame }) => {
                     <div id='scoreContainer'>
                         <div>Time</div>
                         <div>{displayTime}</div>
-                        <Link to='/wheres_waldo/' id='restartBtn' onClick={restartGame}>Restart</Link>
+                        <Link to='/wheres_waldo/' id='restartBtn'>Restart</Link>
                     </div>
                 </div>
             </div>

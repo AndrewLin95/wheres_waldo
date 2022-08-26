@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { query, collection, getDocs, doc, setDoc } from 'firebase/firestore';
 import db from "../../../Firebase/firebase-config";
@@ -26,7 +26,7 @@ const WinScreen:FC<Props> = ({ endGame, displayTime, timer }) => {
         setPlayerName(tempName);
     }
 
-    async function saveScore() {
+    async function saveScore() {  
         await setDoc(doc(db, "scores", `${playerName} ${uniqid()}`), {
             name: playerName,
             time: displayTime,
@@ -36,7 +36,6 @@ const WinScreen:FC<Props> = ({ endGame, displayTime, timer }) => {
 
     async function getScores(){
         if (!checkSubmit){
-            saveScore();
             getCheckSubmit(true);
 
             try{
@@ -59,6 +58,12 @@ const WinScreen:FC<Props> = ({ endGame, displayTime, timer }) => {
         tempScore.sort(function(a, b){return a.timer - b.timer})
         setScores([...tempScore]); 
     }
+
+    useEffect(() => {
+        if (endGame) {
+            getScores()
+        }
+    }, [endGame])
 
     if (endGame){
         return(

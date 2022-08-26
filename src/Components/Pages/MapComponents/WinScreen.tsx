@@ -55,7 +55,6 @@ const WinScreen:FC<Props> = ({ endGame, displayTime, timer }) => {
         }
 
         let tempScore = scores;
-        tempScore.sort(function(a, b){return a.timer - b.timer})
         setScores([...tempScore]); 
     }
 

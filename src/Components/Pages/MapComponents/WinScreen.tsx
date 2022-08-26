@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { query, collection, getDocs, doc, setDoc } from 'firebase/firestore';
+import { query, collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
 import db from "../../../Firebase/firebase-config";
 import uniqid from 'uniqid';
 
@@ -12,6 +12,7 @@ interface Props{
 
 interface Score{
     name: string; 
+    id: string;
     time: string;
     timer: number;
 }
@@ -26,35 +27,63 @@ const WinScreen:FC<Props> = ({ endGame, displayTime, timer }) => {
         setPlayerName(tempName);
     }
 
-    async function saveScore() {  
-        await setDoc(doc(db, "scores", `${playerName} ${uniqid()}`), {
+    function saveScore() {  
+        let lowScore = scores[scores.length - 1].timer;
+        if (scores.length < 10 && !checkSubmit){
+            updateScore();
+            getCheckSubmit(true);
+        } else if (timer < lowScore  && !checkSubmit){
+            updateScore();
+            getCheckSubmit(true);
+        } 
+    }
+
+    async function updateScore(){
+        let uniqID = uniqid();
+        await setDoc(doc(db, "scores", `${playerName} ${uniqID}`), {
             name: playerName,
+            id: `${playerName} ${uniqID}`,
             time: displayTime,
             timer: timer
         });
+        let tempScore = scores;
+        let tempObj = {
+            name: playerName,
+            id: `${playerName} ${uniqID}`,
+            time: displayTime,
+            timer: timer
+        }
+        tempScore.push(tempObj);
+        tempScore.sort(function(a, b){return a.timer - b.timer});
+        setScores([...tempScore]);
     }
 
     async function getScores(){
-        if (!checkSubmit){
-            getCheckSubmit(true);
+        try{
+            const q = query(collection(db, "scores"));
+            const querySnapshop = await getDocs(q);
+            querySnapshop.forEach((doc) => {
+                let eachScore:{name: string, id: string, time: string, timer: number} = {name: doc.data()[`name`], id: doc.data()[`id`], time: doc.data()[`time`], timer: doc.data()[`timer`]}; 
+                let tempArray = scores;
+                tempArray.push(eachScore);
+                setScores([...tempArray]);
+            })
+        }
+        catch(err){
+            console.log(err);
+        }
 
+        if (scores.length > 9){
             try{
-                const q = query(collection(db, "scores"));
-                const querySnapshop = await getDocs(q);
-                querySnapshop.forEach((doc) => {
-                    let eachScore:{name: string, time: string, timer: number} = {name: doc.data()[`name`], time: doc.data()[`time`], timer: doc.data()[`timer`]}; 
-                    let tempArray = scores;
-                    tempArray.push(eachScore);
-                    setScores([...tempArray]);
-                })
+                await deleteDoc(doc(db, "scores", `${scores[scores.length - 1].id}`))
             }
-            catch(err){
+            catch (err){
                 console.log(err);
             }
-            console.log(scores);
         }
 
         let tempScore = scores;
+        tempScore.sort(function(a, b){return a.timer - b.timer})
         setScores([...tempScore]); 
     }
 
@@ -83,7 +112,7 @@ const WinScreen:FC<Props> = ({ endGame, displayTime, timer }) => {
                         <div>Time</div>
                         <div>{displayTime}</div>
                         <input className="scoreName" placeholder='Name' maxLength={10} onChange={(e)=>{updateName(e.target.value)}}></input>
-                        <button onClick={getScores}>Submit Score</button>
+                        <button onClick={saveScore}>Submit Score</button>
                         <Link to='/wheres_waldo/' id='restartBtn'>Restart</Link>
                     </div>
                 </div>

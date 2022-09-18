@@ -98,8 +98,7 @@ const WinScreen:FC<Props> = ({ endGame, displayTime, timer }) => {
             <div id='winPopup'>
                 <div id='winContainer'>
                     <div id='highScore'>
-                        High Scores
-                        Name | Time
+                        <div id='hsTitle'>High Scores</div>
                         {Object.entries(scores).map(([key, value]) => {
                             return (
                                 <div key={key}>

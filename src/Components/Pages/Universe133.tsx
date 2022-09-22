@@ -42,7 +42,6 @@ const Universe133:FC = () => {
             querySnapshop.forEach((doc) => {
                 let newKeyValue:{key: string, x: number, y: number} = {key: doc.data()[`id`], x: doc.data()[`coordsX`], y: doc.data()[`coordsY`]}; 
                 let tempArray = firebaseCoords;
-                console.log(tempArray);
                 tempArray.push(newKeyValue);
                 setFirebaseCoords(tempArray);
             })

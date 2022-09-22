@@ -122,7 +122,6 @@ const Universe133:FC = () => {
         switch (itemName){
             case 'Bender':
                 if (checkClick(coords.x, coords.y, benderCoords.x, benderCoords.y, 0.007, 0.009)) {
-                    console.log('clicked Bender');
                     setClickStatusBender(true);
                 } else{
                     console.log('try again');
@@ -130,7 +129,6 @@ const Universe133:FC = () => {
                 break;
             case 'Totoro':
                 if (checkClick(coords.x, coords.y, totoroCoords.x, totoroCoords.y, 0.016, 0.031)) {
-                    console.log('clicked Totoro');
                     setClickStatusTotoro(true);
                 } else{
                     console.log('try again');
@@ -138,7 +136,6 @@ const Universe133:FC = () => {
                 break;
             case 'Jake':
                 if (checkClick(coords.x, coords.y, jakeCoords.x, jakeCoords.y, 0.037, 0.022)) {
-                    console.log('clicked Jake');
                     setClickStatusJake(true);
                 } else{
                     console.log('try again');
@@ -147,7 +144,6 @@ const Universe133:FC = () => {
             default:
                 console.log('default');
         }
-        console.log(`mouseclick: x: ${coords.x} y: ${coords.y}`);
         setClickDetect(false);
     }
 
